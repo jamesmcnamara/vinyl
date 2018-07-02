@@ -5,7 +5,7 @@
      -o-transform: $transform;
         transform: $transform;
 }
-  
+
 @mixin transition($transition...) {
 -webkit-transition: $transition;
    -moz-transition: $transition;
@@ -19,4 +19,19 @@
     -ms-filter: $filter-type+unquote('(#{$filter-amount})');
      -o-filter: $filter-type+unquote('(#{$filter-amount})');
         filter: $filter-type+unquote('(#{$filter-amount})');
+}
+
+@mixin keyframes($animationName) {
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
 }
