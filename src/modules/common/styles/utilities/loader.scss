@@ -1,0 +1,38 @@
+@import '../utilities/global-variables';
+@import '../utilities/mixins';
+
+/*** Loader styles ***/
+
+.loadingState {
+  animation: stripes 1s linear infinite;
+  -webkit-animation: stripes 1s linear infinite;
+  -webkit-transition: opacity 500ms;
+  -o-transition: opacity 500ms;
+  transition: opacity 500ms;
+  background-size: 150px 150px;
+  background-image: -webkit-linear-gradient(bottom left, $loader-black-bg 25%, $loader-black-stripes 25%, $loader-black-stripes 50%, $loader-black-bg 50%, $loader-black-stripes 75%, $loader-black-bg 75%, $loader-black-bg);
+  background-image: -o-linear-gradient(bottom left, $loader-black-bg 25%, $loader-black-stripes 25%, $loader-black-stripes 50%, $loader-black-bg 50%, $loader-black-stripes 75%, $loader-black-bg 75%, $loader-black-bg);
+  background-image: linear-gradient(to top right, $loader-black-bg 25%, $loader-black-stripes 25%, $loader-black-stripes 50%, $loader-black-bg 50%, $loader-black-stripes 75%, $loader-black-bg 75%, $loader-black-bg);
+  height: 100vh;
+  position: absolute;
+  width: 100%;
+  z-index: -999;
+}
+
+@-webkit-keyframes stripes {
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: 300px 150px;
+	}
+}
+
+@keyframes stripes {
+	from {
+		background-position: 0 0;
+	}
+	to {
+		background-position: 300px 150px;
+	}
+}
