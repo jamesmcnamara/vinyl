@@ -66,11 +66,11 @@ const Circle = styled.div`
 		padding-top: 24%;
 		width: 24%;
 		z-index: 7;
-		-webkit-transition: width .3s; /* Safari */
-		transition: width .3s;
+		-webkit-transition: width .4s; /* Safari */
+		transition: width .4s;
 
 		&:hover {
-			border: 2px solid rgba(155,80,155,.2);
+			border: 2px solid rgba(255,255,255,.2);
 			padding-top: 28%;
 			width: 28%;
 			{-webkit-transition-timing-function: ease-in-out;}
@@ -82,11 +82,11 @@ const Circle = styled.div`
 		background: #fcd731;
 		border: 2px solid rgba(251,130,53,0);
 		z-index: 6;
-		-webkit-transition: width .3s; /* Safari */
-		transition: width .3s;
+		-webkit-transition: width .4s; /* Safari */
+		transition: width .4s;
 
 		&:hover {
-			border: 2px solid rgba(155,80,155,.4);
+			border: 2px solid rgba(255,255,255,.4);
 			padding-top: 46%;
 			width: 46%;
 			{-webkit-transition-timing-function: ease-in-out;}
@@ -102,7 +102,7 @@ const Circle = styled.div`
 		transition: width .3s;
 
 		&:hover {
-			border: 2px solid rgba(155,80,155,.6);
+			border: 2px solid rgba(255,255,255,.6);
 			padding-top: 62%;
 			width: 62%;
 			{-webkit-transition-timing-function: ease-in-out;}
@@ -118,7 +118,7 @@ const Circle = styled.div`
 		transition: width .3s;
 
 		&:hover {
-			border: 2px solid rgba(155,80,155,.8);
+			border: 2px solid rgba(255,255,255,.8);
 			width: 78%;
 			padding-top: 78%;
 			{-webkit-transition-timing-function: ease-in-out;}
@@ -134,7 +134,7 @@ const Circle = styled.div`
 		z-index: 3;
 
 		&:hover {
-			border: 2px solid rgba(155,80,155,1);
+			border: 2px solid rgba(255,255,255,1);
 			width: 94%;
 			padding-top: 94%;
 			{-webkit-transition-timing-function: ease-in-out;}
@@ -144,10 +144,12 @@ const Circle = styled.div`
 		width: 100%;
 		padding-top: 100%;
 		background: #bc5ba1;
+		border: 2px solid rgba(255,255,255,0);
 		z-index: 2;
 		-webkit-transition: width .3s; /* Safari */
 		transition: width .3s;
 		&:hover {
+			border: 2px solid rgba(255,255,255,1);
 			width: 106%;
 			padding-top: 106%;
 			{-webkit-transition-timing-function: ease-in-out;}
