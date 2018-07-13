@@ -46,6 +46,9 @@ const LandingInner = styled.div`
 		top: 50%;
 		transform: translate(-50%, -50%);
 		z-index: 8;
+		&:hover {
+			{-webkit-transition-timing-function: ease-in-out;}
+		}
 	}
 `;
 
@@ -63,11 +66,11 @@ const Circle = styled.div`
 		padding-top: 24%;
 		width: 24%;
 		z-index: 7;
-		-webkit-transition: width .1s; /* Safari */
-		transition: width .1s;
+		-webkit-transition: width .3s; /* Safari */
+		transition: width .3s;
 
 		&:hover {
-			border: 2px solid rgba(155,80,155,1);
+			border: 2px solid rgba(155,80,155,.2);
 			padding-top: 28%;
 			width: 28%;
 			{-webkit-transition-timing-function: ease-in-out;}
@@ -79,11 +82,11 @@ const Circle = styled.div`
 		background: #fcd731;
 		border: 2px solid rgba(251,130,53,0);
 		z-index: 6;
-		-webkit-transition: width .1s; /* Safari */
-		transition: width .1s;
+		-webkit-transition: width .3s; /* Safari */
+		transition: width .3s;
 
 		&:hover {
-			border: 2px solid rgba(155,80,155,1);
+			border: 2px solid rgba(155,80,155,.4);
 			padding-top: 46%;
 			width: 46%;
 			{-webkit-transition-timing-function: ease-in-out;}
@@ -95,10 +98,11 @@ const Circle = styled.div`
 		background: #fbb12b;
 		border: 2px solid rgba(248,120,93,0);
 		z-index: 5;
-		-webkit-transition: width .1s; /* Safari */
-		transition: width .1s;
+		-webkit-transition: width .3s; /* Safari */
+		transition: width .3s;
+
 		&:hover {
-			border: 2px solid rgba(155,80,155,1);
+			border: 2px solid rgba(155,80,155,.6);
 			padding-top: 62%;
 			width: 62%;
 			{-webkit-transition-timing-function: ease-in-out;}
@@ -110,10 +114,11 @@ const Circle = styled.div`
 		background: #fb8235;
 		border: 2px solid rgba(188,91,161,0);
 		z-index: 4;
-		-webkit-transition: width .1s; /* Safari */
-		transition: width .1s;
+		-webkit-transition: width .3s; /* Safari */
+		transition: width .3s;
+
 		&:hover {
-			border: 2px solid rgba(155,80,155,1);
+			border: 2px solid rgba(155,80,155,.8);
 			width: 78%;
 			padding-top: 78%;
 			{-webkit-transition-timing-function: ease-in-out;}
@@ -124,9 +129,10 @@ const Circle = styled.div`
 		padding-top: 88%;
 		background: #f8785d;
 		border: 2px solid rgba(248,120,93,1);
-		-webkit-transition: width .1s; /* Safari */
-		transition: width .1s;
+		-webkit-transition: width .3s; /* Safari */
+		transition: width .3s;
 		z-index: 3;
+
 		&:hover {
 			border: 2px solid rgba(155,80,155,1);
 			width: 94%;
@@ -139,8 +145,8 @@ const Circle = styled.div`
 		padding-top: 100%;
 		background: #bc5ba1;
 		z-index: 2;
-		-webkit-transition: width .1s; /* Safari */
-		transition: width .1s;
+		-webkit-transition: width .3s; /* Safari */
+		transition: width .3s;
 		&:hover {
 			width: 106%;
 			padding-top: 106%;
