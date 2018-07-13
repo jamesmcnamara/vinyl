@@ -67,7 +67,7 @@ const Circle = styled.div`
 		transition: width .1s;
 
 		&:hover {
-			border: 2px solid rgba(251,177,43,1);
+			border: 2px solid rgba(155,80,155,1);
 			padding-top: 28%;
 			width: 28%;
 			{-webkit-transition-timing-function: ease-in-out;}
@@ -83,7 +83,7 @@ const Circle = styled.div`
 		transition: width .1s;
 
 		&:hover {
-			border: 2px solid rgba(251,130,53,1);
+			border: 2px solid rgba(155,80,155,1);
 			padding-top: 46%;
 			width: 46%;
 			{-webkit-transition-timing-function: ease-in-out;}
@@ -98,7 +98,7 @@ const Circle = styled.div`
 		-webkit-transition: width .1s; /* Safari */
 		transition: width .1s;
 		&:hover {
-			border: 2px solid rgba(248,120,93,1);
+			border: 2px solid rgba(155,80,155,1);
 			padding-top: 62%;
 			width: 62%;
 			{-webkit-transition-timing-function: ease-in-out;}
@@ -113,7 +113,7 @@ const Circle = styled.div`
 		-webkit-transition: width .1s; /* Safari */
 		transition: width .1s;
 		&:hover {
-			border: 2px solid rgba(188,91,161,1);
+			border: 2px solid rgba(155,80,155,1);
 			width: 78%;
 			padding-top: 78%;
 			{-webkit-transition-timing-function: ease-in-out;}
