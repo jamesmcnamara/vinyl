@@ -1,8 +1,9 @@
-import * as React from 'react';
-import {toQueryString} from '../../common/utils';
-import gql from 'graphql-tag';
-import {Query} from 'react-apollo';
 import {DocumentNode} from 'graphql';
+import gql from 'graphql-tag';
+import * as React from 'react';
+import {Query} from 'react-apollo';
+
+import {toQueryString} from '../../common/utils';
 
 const YOUTUBE_API_KEY = 'AIzaSyCum4fCWhpcRNIh8VzD3Fhny5nxYYJrlTI';
 
@@ -60,12 +61,12 @@ export interface $YoutubeResult {
 }
 interface $Props {
 	search: string;
-	children(data: $YoutubeResult[]): JSX.Element;
+	children(data: $YoutubeResult[]): React.ReactNode;
 }
 
-export default ({search, children}: $Props) => {
+export default function YoutubeQueryContainer({search, children}: $Props) {
 	if (!search) {
-		return children([]);
+		return <>{children([])}</>;
 	}
 	return (
 		<Query
@@ -77,4 +78,4 @@ export default ({search, children}: $Props) => {
 			{({data}) => children((data && data.youtubeResults && data.youtubeResults.items) || [])}
 		</Query>
 	);
-};
+}

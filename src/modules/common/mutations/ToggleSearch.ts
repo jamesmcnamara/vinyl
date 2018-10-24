@@ -1,7 +1,12 @@
-import {mutation} from '../utils';
 import gql from 'graphql-tag';
 
-export default mutation(gql`
+import {mutation} from '../mutation';
+
+interface $Variables {
+	isOpen: boolean;
+}
+
+export default mutation<$Variables>(gql`
 	mutation ToggleSearch($isOpen: Boolean) {
 		toggleSearch(isOpen: $isOpen) @client
 	}

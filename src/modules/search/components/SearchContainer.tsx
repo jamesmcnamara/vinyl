@@ -1,3 +1,4 @@
+/// <reference types="react" />
 import gql from 'graphql-tag';
 import * as React from 'react';
 import {Query} from 'react-apollo';
@@ -21,23 +22,30 @@ const SEARCH_QUERY = gql`
 		}
 	}
 `;
-
-interface $Renderer {
-	render(args: any): JSX.Element;
+interface $QueryData {
+	search: {
+		query: string;
+		isSearchOpen: string;
+	};
 }
+
+interface $RenderProp<T> {
+	children(args: T): React.ReactNode;
+}
+
 const Composed = adapt(
 	{
-		toggleSearch: <ToggleSearch thunk />,
+		toggleSearch: ToggleSearch.thunk(),
 		playlist: <WithPlaylistId />,
-		setSearch: <SetSearch variable="query" />,
-		addToPlaylist: <AddToPlaylist simple />,
-		data: ({render}: $Renderer) => (
-			<Query query={SEARCH_QUERY}>{props => render(props.data.search)}</Query>
+		setSearch: SetSearch.variable('query'),
+		addToPlaylist: AddToPlaylist.simple(),
+		data: ({children}: $RenderProp<$QueryData>) => (
+			<Query query={SEARCH_QUERY}>{props => children(props.data.search)}</Query>
 		)
 	},
 	{
-		results: ({data, render}: $Renderer & {data: {query: string}}) => (
-			<TrackSearchContainer search={data.query}>{render}</TrackSearchContainer>
+		results: ({data, children}: $RenderProp<$Result[]> & {data: {query: string}}) => (
+			<TrackSearchContainer search={data.query}>{children}</TrackSearchContainer>
 		)
 	}
 );

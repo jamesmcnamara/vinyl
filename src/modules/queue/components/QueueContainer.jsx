@@ -1,19 +1,18 @@
-import {toast} from 'react-toastify';
-import * as React from 'react';
-
-import {Subscription} from 'react-apollo';
 import gql from 'graphql-tag';
+import * as React from 'react';
+import {Subscription} from 'react-apollo';
+import {toast} from 'react-toastify';
 
-import {nullToUndefined} from '../../common/utils';
-import DeleteTrack from '../mutations/DeleteTrack';
-import PlaylistFragments from '../../common/fragments/PlaylistFragments';
-import Queue from './Queue';
+import adapt from '../../common/components/Adapt';
 import SpinnerQuery from '../../common/components/SpinnerQuery';
 import Toast from '../../common/components/Toast';
-import TogglePlaying from '../../common/mutations/TogglePlaying';
 import WithPlaylistId from '../../common/components/WithPlaylistId';
-import adapt from '../../common/components/Adapt';
+import PlaylistFragments from '../../common/fragments/PlaylistFragments';
+import TogglePlaying from '../../common/mutations/TogglePlaying';
+import {nullToUndefined} from '../../common/utils';
+import DeleteTrack from '../mutations/DeleteTrack';
 import UpdatePlaying from '../mutations/UpdatePlaying';
+import Queue from './Queue';
 
 const query = gql`
 	query Queue($playlist: String!) {
@@ -50,14 +49,14 @@ const Composed = adapt(
 		togglePlaying: <TogglePlaying toggle="played" />
 	},
 	{
-		_: ({render, playlist}) => (
+		_: ({children, playlist}) => (
 			<Subscription subscription={ON_TRACK_ADDED} variables={{playlist}}>
-				{render}
+				{children}
 			</Subscription>
 		),
-		data: ({render, playlist}) => (
+		data: ({children, playlist}) => (
 			<SpinnerQuery query={query} variables={{playlist}} postProcess={nullToUndefined}>
-				{({data}) => render(data)}
+				{({data}) => children(data)}
 			</SpinnerQuery>
 		)
 	}

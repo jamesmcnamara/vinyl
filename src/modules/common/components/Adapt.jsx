@@ -8,7 +8,7 @@ function adaptReducer(Component, [propName, Instance]) {
 				const childFn = renderProp => children(set(propName)(renderProp)(propObject));
 
 				if (typeof Instance === 'function') {
-					return <Instance {...propObject} render={childFn} />;
+					return <Instance {...propObject}>{childFn}</Instance>;
 				}
 				return React.cloneElement(Instance, {}, childFn);
 			}}

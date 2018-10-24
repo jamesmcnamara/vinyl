@@ -1,9 +1,9 @@
-import * as React from 'react';
 import * as _f from 'lodash/fp';
+import * as React from 'react';
 
 import SoundCloudQueryContainer from './SoundCloudQueryContainer';
-import YoutubeQueryContainer from './YoutubeQueryContainer';
 import {$Result} from './types';
+import YoutubeQueryContainer from './YoutubeQueryContainer';
 
 const interleave = _f.pipe(
 	_f.zip,
@@ -13,12 +13,12 @@ const interleave = _f.pipe(
 
 interface $Props {
 	search: string;
-	children(results: $Result[]): JSX.Element;
+	children(results: $Result[]): React.ReactNode;
 }
 
-export default ({search, children}: $Props) => {
+export default function TrackSearchContainer({search, children}: $Props) {
 	if (!search) {
-		return children([]);
+		return <>{children([])}</>;
 	}
 	return (
 		<YoutubeQueryContainer search={search}>
@@ -29,4 +29,4 @@ export default ({search, children}: $Props) => {
 			)}
 		</YoutubeQueryContainer>
 	);
-};
+}

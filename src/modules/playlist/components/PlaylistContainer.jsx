@@ -1,14 +1,13 @@
-import * as React from 'react';
-
-import {Query} from 'react-apollo';
 import gql from 'graphql-tag';
+import * as React from 'react';
+import {Query} from 'react-apollo';
 
+import adapt from '../../common/components/Adapt';
+import WithPlaylistId from '../../common/components/WithPlaylistId';
+import ToggleSearch from '../../common/mutations/ToggleSearch';
 import {nullToUndefined} from '../../common/utils';
 import CreatePlaylist, {createPlaylistUpdate} from '../mutations/CreatePlaylist';
 import Playlist from './Playlist';
-import ToggleSearch from '../../common/mutations/ToggleSearch';
-import WithPlaylistId from '../../common/components/WithPlaylistId';
-import adapt from '../../common/components/Adapt';
 
 const query = gql`
 	query PlaylistQuery($playlist: String!) {
@@ -27,18 +26,18 @@ const query = gql`
 
 const Composed = adapt(
 	{
-		toggleSearch: <ToggleSearch nullary />,
+		toggleSearch: ToggleSearch.thunk(),
 		playlist: <WithPlaylistId />
 	},
 	{
-		data: ({render, playlist}) => (
+		data: ({children, playlist}) => (
 			<Query query={query} variables={{playlist}}>
-				{props => render(nullToUndefined(props.data))}
+				{props => children(nullToUndefined(props.data))}
 			</Query>
 		),
-		createPlaylist: ({render, playlist}) => (
+		createPlaylist: ({children, playlist}) => (
 			<CreatePlaylist variables={{playlist}} update={createPlaylistUpdate(playlist)}>
-				{render}
+				{children}
 			</CreatePlaylist>
 		)
 	}

@@ -1,16 +1,14 @@
-import * as React from 'react';
-
-import {Query} from 'react-apollo';
 import gql from 'graphql-tag';
+import * as React from 'react';
+import {Query} from 'react-apollo';
 
+import adapt from '../../common/components/Adapt';
+import TrackFragments from '../../common/fragments/TrackFragments';
 import {PlayNext} from '../../common/mutations/ChangeSong';
-import PlayerBox from './PlayerBox';
 import SetDuration from '../../common/mutations/SetDuration';
 import SetPlayed from '../../common/mutations/SetPlayed';
-import TogglePlaying from '../../common/mutations/TogglePlaying';
 import ToggleExpanded from '../../common/mutations/ToggleExpanded';
-import TrackFragments from '../../common/fragments/TrackFragments';
-import adapt from '../../common/components/Adapt';
+import PlayerBox from './PlayerBox';
 
 const query = gql`
 	query PlayerContainer {
@@ -32,7 +30,7 @@ const Composed = adapt({
 	toggleExpanded: <ToggleExpanded toggle="maybeValue" />,
 	setPlayed: <SetPlayed variable="played" />,
 	setDuration: <SetDuration variable="duration" />,
-	data: ({render}) => <Query query={query}>{({data}) => render(data)}</Query>
+	data: ({children}) => <Query query={query}>{({data}) => children(data)}</Query>
 });
 
 export default function PlayerContainer() {

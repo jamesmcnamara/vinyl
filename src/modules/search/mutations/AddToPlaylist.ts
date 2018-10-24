@@ -1,7 +1,8 @@
 import gql from 'graphql-tag';
 
-import {mutation, $Nullable} from '../../common/utils';
 import PlaylistFragments from '../../common/fragments/PlaylistFragments';
+import {mutation} from '../../common/mutation';
+import {$Nullable} from '../../common/utils';
 import {$Result, $TrackSource} from '../components/types';
 
 export function variablesForAddToPlaylist(track: $Result, playlist: string): $TrackInput {
@@ -19,7 +20,7 @@ export function variablesForAddToPlaylist(track: $Result, playlist: string): $Tr
 				...track,
 				source: 'SOUNDCLOUD',
 				playlist
-			};
+			} as $TrackInput;
 	}
 }
 
@@ -31,7 +32,7 @@ export interface $TrackInput {
 	playlist: string;
 }
 
-export default mutation(gql`
+export default mutation<$TrackInput>(gql`
 	mutation AddToPlaylist(
 		$url: String!
 		$thumbnail: String

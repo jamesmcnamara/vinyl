@@ -1,10 +1,9 @@
-import * as React from 'react';
-
-import {Query} from 'react-apollo';
+import {DocumentNode} from 'graphql';
 import gql from 'graphql-tag';
+import * as React from 'react';
+import {Query} from 'react-apollo';
 
 import {toQueryString} from '../../common/utils';
-import {DocumentNode} from 'graphql';
 
 const SOUNDCLOUD_API_KEY = '32eb3539260715fa1251fcf9989263f2';
 
@@ -29,7 +28,7 @@ const query: DocumentNode = gql`
 `;
 export interface $SoundCloudResult {
 	__typename: 'SoundCloudResult';
-	id: number;
+	id: string;
 	title: string;
 	description: string;
 	thumbnail: string | null;
@@ -38,12 +37,12 @@ export interface $SoundCloudResult {
 
 interface $Props {
 	search: string;
-	children(data: $SoundCloudResult[]): JSX.Element;
+	children(data: $SoundCloudResult[]): React.ReactNode;
 }
 
-export default ({search, children}: $Props) => {
+export default function SoundCloudQueryContainer({search, children}: $Props) {
 	if (!search) {
-		return children([]);
+		return <>{children([])}</>;
 	}
 	return (
 		<Query
@@ -55,4 +54,4 @@ export default ({search, children}: $Props) => {
 			{({data}) => children(data ? data.soundCloudResults : [])}
 		</Query>
 	);
-};
+}
