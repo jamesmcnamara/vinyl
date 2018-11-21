@@ -1,10 +1,8 @@
-import * as React from 'react';
-
-import {Query} from 'react-apollo';
+import {DocumentNode} from 'graphql';
 import gql from 'graphql-tag';
+import {useQuery} from 'react-apollo-hooks';
 
 import {toQueryString} from '../../common/utils';
-import {DocumentNode} from 'graphql';
 
 const SOUNDCLOUD_API_KEY = '32eb3539260715fa1251fcf9989263f2';
 
@@ -16,7 +14,7 @@ function getSoundCloudUrl(query: string) {
 	});
 }
 
-const query: DocumentNode = gql`
+const SOUNDCLOUD_QUERY: DocumentNode = gql`
 	query SOUNDCLOUD_API_KEY($path: String!) {
 		soundCloudResults @rest(type: "SoundCloudResult", endpoint: "soundcloud", path: $path) {
 			id
@@ -27,6 +25,11 @@ const query: DocumentNode = gql`
 		}
 	}
 `;
+
+interface $QueryData {
+	soundCloudResults: $SoundCloudResult[];
+}
+
 export interface $SoundCloudResult {
 	__typename: 'SoundCloudResult';
 	id: number;
@@ -36,23 +39,15 @@ export interface $SoundCloudResult {
 	url: string;
 }
 
-interface $Props {
-	search: string;
-	children(data: $SoundCloudResult[]): JSX.Element;
-}
-
-export default ({search, children}: $Props) => {
-	if (!search) {
-		return children([]);
-	}
-	return (
-		<Query
-			query={query}
-			variables={{path: getSoundCloudUrl(search)}}
-			context={{debounceKey: 'SoundCloudSearch'}}
-			fetchPolicy="network-only"
-		>
-			{({data}) => children(data ? data.soundCloudResults : [])}
-		</Query>
+export default function useSoundCloud(query: string) {
+	const {data: {soundCloudResults} = {soundCloudResults: []}} = useQuery<$QueryData>(
+		SOUNDCLOUD_QUERY,
+		{
+			variables: {path: getSoundCloudUrl(query)},
+			context: {debounceKey: 'SoundCloudSearch'},
+			fetchPolicy: 'network-only',
+			suspend: false
+		}
 	);
-};
+	return soundCloudResults;
+}

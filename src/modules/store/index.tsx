@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { map, set } from 'shades';
+import {map, set} from 'shades';
 
-import { toggleOr } from '../common/utils';
-import { $Track } from '../search/components/types';
+import {toggleOr} from '../common/utils';
+import {$Track} from '../search/components/types';
 
-const initialState = {
+const initialState: $State = {
 	player: {
 		currentlyPlaying: undefined,
 		playing: true,
@@ -22,10 +22,6 @@ const initialState = {
 		isSearchOpen: false
 	}
 };
-
-interface $Props {
-	children: React.ReactNode;
-}
 
 interface $State {
 	player: {
@@ -76,6 +72,10 @@ const Store = React.createContext<$Store>({
 
 export function useStore(): $Store {
 	return React.useContext(Store);
+}
+
+interface $Props {
+	children: React.ReactNode;
 }
 
 export default class StoreProvider extends React.Component<$Props, $State> {
